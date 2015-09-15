@@ -14,7 +14,7 @@ use JMS\DiExtraBundle\Annotation\Inject;
  *
  * @version 0.0.1
  */
-class AgentManager
+class ProxyManager
 {
 
     /**
