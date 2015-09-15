@@ -1,0 +1,9 @@
+mlanka_tech_app.administrator_list:
+    pattern:  /secured/administrator/list.{_format}
+    defaults: { _controller: MlankaTechAppBundle:Administrator:list , _format: html}
+    schemes:  [http]
+    requirements:
+        _method:  GET
+        _format:  html
+        
+
