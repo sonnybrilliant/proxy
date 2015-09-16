@@ -16,7 +16,7 @@ class ProxyController extends Controller
         if($request->isMethod('POST')){
             $data = explode(',',urldecode($request->get('val')));
             $payload = new \stdClass();
-            if($data[0] != ''){
+            if(ctype_alnum(trim($data[0]))){
                 $payload->coachName = $data[0];
                 $payload->lineVoltage = $data[1];
                 $payload->gpsTime = $data[2];
