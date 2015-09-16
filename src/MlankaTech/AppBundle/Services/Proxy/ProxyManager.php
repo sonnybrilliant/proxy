@@ -4,6 +4,7 @@ namespace MlankaTech\AppBundle\Services\Proxy;
 
 use JMS\DiExtraBundle\Annotation as DI;
 use JMS\DiExtraBundle\Annotation\Inject;
+use Monolog\Logger;
 
 /**
  * ProxyManager.
@@ -16,6 +17,10 @@ use JMS\DiExtraBundle\Annotation\Inject;
  */
 class ProxyManager
 {
+    /**
+     * @var Monolog logger
+     */
+    protected $logger;
 
     /**
      * Producer voucher create
@@ -24,13 +29,26 @@ class ProxyManager
      */
     public $proxyPassProducer;
 
-    public function __construct(){}
+    /**
+     * @param Logger  $logger
+     *
+     * @DI\InjectParams({
+     *     "logger"  = @DI\Inject("logger")
+     * })
+     */
+    public function __construct(
+        Logger $logger
+    ) {
+        $this->logger = $logger;
+    }
 
     /**
      * @param $payload
      */
     public function publish($payload)
     {
+        $this->logger->error("-------------------------");
+        $this->logger->error(json_encode($payload));
         $this->proxyPassProducer->publish(json_encode($payload),$routing = 'proxy.pass');
     }
 
