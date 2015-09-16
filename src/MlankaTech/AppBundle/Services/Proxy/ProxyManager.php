@@ -47,7 +47,7 @@ class ProxyManager
      */
     public function publish($payload)
     {
-        $this->proxyPassProducer->publish($payload,$routing = 'proxy.pass');
+        $this->proxyPassProducer->publish('Hello world',$routing = 'proxy.pass');
     }
 
 }
