@@ -47,7 +47,8 @@ class ProxyManager
      */
     public function publish($payload)
     {
-        $this->proxyPassProducer->publish(json_encode(array_map('utf8_encode',$payload)),$routing = 'proxy.pass');
+        $properties = get_object_vars($payload);
+        $this->proxyPassProducer->publish(json_encode(array_map('utf8_encode',$properties)),$routing = 'proxy.pass');
     }
 
 }
