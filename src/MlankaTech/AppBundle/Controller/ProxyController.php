@@ -13,12 +13,8 @@ class ProxyController extends Controller
      */
     public function proxyAction(Request $request)
     {
-        $logger = $this->get('logger');
-        $logger->error("ProxyController proxyAction");
         if($request->isMethod('POST')){
-            $logger->error("ProxyController proxyAction POST");
             $data = explode(',',urldecode($request->get('val')));
-
             $payload = new \stdClass();
             if($data[0] != ''){
                 $payload->coachName = $data[0];
@@ -38,9 +34,7 @@ class ProxyController extends Controller
                 $payload->shaftEncode4 = $data[14];
 
                 //send data
-                $logger->error("ProxyController proxyAction Send payload");
                 $this->get('proxy.manager')->publish($payload);
-                $logger->error("ProxyController proxyAction Send sent");
             }
         }
         return $this->render('MlankaTechAppBundle:Proxy:proxy.html.twig', array());

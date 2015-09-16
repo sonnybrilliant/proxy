@@ -47,10 +47,7 @@ class ProxyManager
      */
     public function publish($payload)
     {
-        $this->logger->error("-------------------------");
-        $properties = get_object_vars($payload);
-        $this->logger->error(print_r($properties,1));
-        $this->proxyPassProducer->publish(json_encode($payload),$routing = 'proxy.pass');
+        $this->proxyPassProducer->publish($payload,$routing = 'proxy.pass');
     }
 
 }
